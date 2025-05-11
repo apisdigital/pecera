@@ -203,8 +203,8 @@ class pez:
         return self.pez.vx
 
     def posicion(self):
-        lista = [self.pez.x,self.pez.y]
-        return lista
+        return [self.pez.x,self.pez.y]
+        
 
     def ir_a(self,vx,vy):
         self.vx = vx
@@ -217,7 +217,7 @@ class pez:
 
     def come(self):
         self.apetito = 0
-        self.pez.change_scale(-0.5, ScaleAnchor.MIDDLE)
+        self.pez.change_scale(0.4, ScaleAnchor.MIDDLE)
 #COMIDA*************************************************************************
 class comida:
     def __init__(self):
@@ -292,7 +292,7 @@ def on_update():
                 vn = Math.sqrt((dx**2)+(dy**2))
                 rv = v_comer/vn
                 elemento.ir_a(dx*rv,dy*rv)
-                if abs(dx)<2 and abs(dy)<2:
+                if abs(dx)<1 and abs(dy)<1:
                     c.destruir()
                     elemento.come()
 

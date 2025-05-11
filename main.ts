@@ -211,8 +211,7 @@ class pez {
     }
     
     public posicion(): number[] {
-        let lista = [this.pez.x, this.pez.y]
-        return lista
+        return [this.pez.x, this.pez.y]
     }
     
     public ir_a(vx: number, vy: number) {
@@ -228,7 +227,7 @@ class pez {
     
     public come() {
         this.apetito = 0
-        this.pez.changeScale(-0.5, ScaleAnchor.Middle)
+        this.pez.changeScale(0.4, ScaleAnchor.Middle)
     }
     
 }
@@ -314,7 +313,7 @@ game.onUpdate(function on_update() {
                 vn = Math.sqrt(dx ** 2 + dy ** 2)
                 rv = v_comer / vn
                 elemento.ir_a(dx * rv, dy * rv)
-                if (Math.abs(dx) < 2 && Math.abs(dy) < 2) {
+                if (Math.abs(dx) < 1 && Math.abs(dy) < 1) {
                     c.destruir()
                     elemento.come()
                 }
