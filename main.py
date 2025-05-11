@@ -127,72 +127,96 @@ v_comer = 60
 class pez:
     
     def __init__(self):
-        
-        self.pez = sprites.create(img("""
+        disfraz = randint(0, 3) #crea los disfraces
+        if disfraz == 0:
+            im=img("""
             . . . . . . . . . . . . . . . .
-            . . . . . . . . c c c c . . . .
-            . . . . . . c c d d d d c . . .
-            . . . . . c c c c c c d c . . .
-            . . . . c c 4 4 4 4 d c c . . .
-            . . . c 4 d 4 4 4 4 4 1 c . c c
-            . . c 4 4 4 1 4 4 4 4 d 1 c 4 c
-            . c 4 4 4 4 1 4 4 4 4 4 1 c 4 c
-            f 4 4 4 4 4 1 4 4 4 4 4 1 4 4 f
-            f 4 4 4 f 4 1 c c 4 4 4 1 f 4 f
-            f 4 4 4 4 4 1 4 4 f 4 4 d f 4 f
-            . f 4 4 4 4 1 c 4 f 4 d f f f f
-            . . f f 4 d 4 4 f f 4 c f c . .
-            . . . . f f 4 4 4 4 c d b c . .
-            . . . . . . f f f f d d d c . .
-            . . . . . . . . . . c c c . . .
-        """),
-            SpriteKind.player)
-        self.pez.x = randint(0, screen.width)
-        self.pez.y = randint(0, screen.height)
-        self.pez.vx=randint(-30, 30)
-        self.pez.vy=randint(-30, 30)
-        self.pez.set_bounce_on_wall(True)
-        self.apetito = 1
-        
-    def mirar(self, l):
-        if l == "i":       
-            self.pez.set_image(img("""
-                . . . . . . . . . . . . . . . .
-                . . . . . . . . c c c c . . . .
-                . . . . . . c c d d d d c . . .
-                . . . . . c c c c c c d c . . .
-                . . . . c c 4 4 4 4 d c c . . .
-                . . . c 4 d 4 4 4 4 4 1 c . c c
-                . . c 4 4 4 1 4 4 4 4 d 1 c 4 c
-                . c 4 4 4 4 1 4 4 4 4 4 1 c 4 c
-                f 4 4 4 4 4 1 4 4 4 4 4 1 4 4 f
-                f 4 4 4 f 4 1 c c 4 4 4 1 f 4 f
-                f 4 4 4 4 4 1 4 4 f 4 4 d f 4 f
-                . f 4 4 4 4 1 c 4 f 4 d f f f f
-                . . f f 4 d 4 4 f f 4 c f c . .
-                . . . . f f 4 4 4 4 c d b c . .
-                . . . . . . f f f f d d d c . .
-                . . . . . . . . . . c c c . . .
-            """))
-        else:
-            self.pez.set_image(img(f"""
+            . . . . c c c c . . . . . . . .
+            . . . c d d d d c c . . . . . .
+            . . . c d c c c c c c . . . . .
+            . . . c c d 4 4 4 4 c c . . . .
+            c c . c 1 4 4 4 4 4 d 4 c . . .
+            c 4 c 1 d 4 4 4 4 1 4 4 4 c . .
+            c 4 c 1 4 4 4 4 4 1 4 4 4 4 c .
+            f 4 4 1 4 4 4 4 4 1 4 4 4 4 4 f
+            f 4 f 1 4 4 4 c c 1 4 f 4 4 4 f
+            f 4 f d 4 4 f 4 4 1 4 4 4 4 4 f
+            f f f f d 4 f 4 c 1 4 4 4 4 f .
+            . . c f c 4 f f 4 4 d 4 f f . .
+            . . c b d c 4 4 4 4 f f . . . .
+            . . c d d d f f f f . . . . . .
+            . . . c c c . . . . . . . . . .
+            """)
+        elif disfraz == 1:
+            im=img("""
                 . . . . . . . . . . . . . . . .
                 . . . . c c c c . . . . . . . .
                 . . . c d d d d c c . . . . . .
                 . . . c d c c c c c c . . . . .
-                . . . c c d 4 4 4 4 c c . . . .
-                c c . c 1 4 4 4 4 4 d 4 c . . .
-                c 4 c 1 d 4 4 4 4 1 4 4 4 c . .
-                c 4 c 1 4 4 4 4 4 1 4 4 4 4 c .
-                f 4 4 1 4 4 4 4 4 1 4 4 4 4 4 f
-                f 4 f 1 4 4 4 c c 1 4 f 4 4 4 f
-                f 4 f d 4 4 f 4 4 1 4 4 4 4 4 f
-                f f f f d 4 f 4 c 1 4 4 4 4 f .
-                . . c f c 4 f f 4 4 d 4 f f . .
-                . . c b d c 4 4 4 4 f f . . . .
+                . . . c c d 5 5 5 5 c c . . . .
+                c c . c 1 5 5 5 5 5 d 5 c . . .
+                c 5 c 1 d 5 5 5 5 1 5 5 5 c . .
+                c 5 c 1 5 5 5 5 5 1 5 5 5 5 c .
+                f 5 5 1 5 5 5 5 5 1 5 5 5 5 5 f
+                f 5 f 1 5 5 5 c c 1 5 f 5 5 5 f
+                f 5 f d 5 5 f 5 5 1 5 5 5 5 5 f
+                f f f f d 5 f 5 c 1 5 5 5 5 f .
+                . . c f c 5 f f 5 5 d 5 f f . .
+                . . c b d c 5 5 5 5 f f . . . .
                 . . c d d d f f f f . . . . . .
                 . . . c c c . . . . . . . . . .
-            """))
+            """)
+        elif disfraz == 2:
+            im=img("""
+                . . . . . . . . . . . . . . . .
+                . . . c c c c c . . . . . . . .
+                . . c 5 5 5 5 5 c c . . . . . .
+                . c 5 5 5 5 5 5 5 5 c . . . . .
+                . c 5 5 5 b b b b b b c . . . .
+                . . c c b b 1 b b 1 1 c . . . .
+                . . . c 1 1 1 b b 1 1 1 c . . .
+                c c . c 1 1 1 b 1 1 1 1 c . . .
+                c 5 b b 1 1 1 b 1 1 1 d c . . .
+                c 5 5 5 1 b 1 b 1 c 1 d c c . .
+                c 5 b b 1 b 1 1 1 1 1 d d c c .
+                c c . f 1 b b 1 1 1 1 1 d d d f
+                . . . f b b b 1 1 1 1 1 1 f f f
+                . . f 5 5 b b b 1 1 1 f f . . .
+                . . f 5 5 5 5 5 f f f . . . . .
+                . . f f f f f f . . . . . . . .
+            """)
+        else:
+            im=img("""
+                . . . . . . . . . . . . . . . .
+                . . . . c c c c . . . . . . . .
+                . . . c d d d d c c . . . . . .
+                . . . c d c c c c c c . . . . .
+                . . . c c d 7 7 7 7 c c . . . .
+                c c . c 1 7 7 7 7 7 d 7 c . . .
+                c 7 c 1 d 7 7 7 7 1 7 7 7 c . .
+                c 7 c 1 7 7 7 7 7 1 7 7 7 7 c .
+                f 7 7 1 7 7 7 7 7 1 7 7 7 7 7 f
+                f 7 f 1 7 7 7 c c 1 7 f 7 7 7 f
+                f 7 f d 7 7 f 7 7 1 7 7 7 7 7 f
+                f f f f d 7 f 7 c 1 7 7 7 7 f .
+                . . c f c 7 f f 7 7 d 7 f f . .
+                . . c b d c 7 7 7 7 f f . . . .
+                . . c d d d f f f f . . . . . .
+                . . . c c c . . . . . . . . . .
+            """)
+        self.pez = sprites.create(im,SpriteKind.player) #crea el sprite eligiendo un disfraz
+        self.pez.x = randint(0, screen.width)
+        self.pez.y = randint(0, screen.height)
+        self.pez.vx=randint(-30, 30)
+        self.pez.vy=randint(-30, 30)
+        if self.pez.vx<0:#pone al pez mirando hacia el lado correcto
+            self.pez.image.flip_x() 
+        self.hacia = self.pez.vx
+        self.pez.set_bounce_on_wall(True)
+        self.apetito = 1
+        
+    def flip(self): #camiba la orientación del pez si cambia de dirección
+        self.pez.image.flip_x()
 
     def cambiar_direccion(self):
         if randint(1,10)==1:
@@ -205,7 +229,6 @@ class pez:
     def posicion(self):
         return [self.pez.x,self.pez.y]
         
-
     def ir_a(self,vx,vy):
         self.vx = vx
         self.vy = vy
@@ -214,10 +237,15 @@ class pez:
 
     def hambre(self):
         return self.apetito
-
+    #Cambia de tamaño si come y queda sin apetito
     def come(self):
         self.apetito = 0
-        self.pez.change_scale(0.4, ScaleAnchor.MIDDLE)
+        self.pez.change_scale(0.1, ScaleAnchor.MIDDLE)
+        self.hora_comer = game.runtime()
+    
+    def quiero_comer(self):
+        if game.runtime()-self.hora_comer > 10000:
+            self.apetito = 1
 #COMIDA*************************************************************************
 class comida:
     def __init__(self):
@@ -253,7 +281,7 @@ class comida:
 
 lista_peces:List[pez] = []
 lista_comida:List[comida] = []
-for i in range(4):
+for i in range(3):
     lista_peces.append(pez()) 
 
 def on_event_pressed():
@@ -276,17 +304,13 @@ sprites.on_destroyed(SpriteKind.food, on_destroyed)
 #Ciclo principal
 def on_update():
     for elemento in lista_peces:
-        if elemento.direccion()<0:
-            elemento.mirar("i")
-        else:
-            elemento.mirar("d")
-
+            
         if comer ==0 or elemento.hambre() == 0:
             if randint(1,20) == 1:
                 elemento.cambiar_direccion()
         else: 
-            for c in lista_comida:
-                
+            #calcula la posición de la comida y se dirige hacia ella a una velocidad constante 
+            for c in lista_comida:  
                 dx = c.posicion()[0]-elemento.posicion()[0]
                 dy = c.posicion()[1]-elemento.posicion()[1]
                 vn = Math.sqrt((dx**2)+(dy**2))
@@ -295,6 +319,9 @@ def on_update():
                 if abs(dx)<1 and abs(dy)<1:
                     c.destruir()
                     elemento.come()
-
-            
+        #controla el cambjo de dirección para poner la imagen correcta
+        if (elemento.direccion()>=0 and elemento.hacia<0) or (elemento.direccion()<0 and elemento.hacia>=0):
+            elemento.flip()
+            elemento.hacia = elemento.direccion()
+        elemento.quiero_comer()    
 game.on_update(on_update)
